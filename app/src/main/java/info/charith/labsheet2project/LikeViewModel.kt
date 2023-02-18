@@ -9,7 +9,7 @@ import androidx.lifecycle.MutableLiveData
 
 class LikeViewModel(application: Application) : AndroidViewModel(application) {
     //    var likeCount: Int = 0
-    private val _likeCount = MutableLiveData<Int>(loadDataFromPreferences())
+    private val _likeCount = MutableLiveData(loadDataFromPreferences())
     val likeCount: LiveData<Int> get() = _likeCount
 
     fun likeBtnClick() {
@@ -18,16 +18,15 @@ class LikeViewModel(application: Application) : AndroidViewModel(application) {
         saveDataToPreferences()
     }
 
-    fun saveDataToPreferences() {
+    private fun saveDataToPreferences() {
         val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplication())
         val editor = sharedPreferences.edit()
         editor.putInt("likeCount", _likeCount.value!!)
         editor.apply()
     }
 
-    fun loadDataFromPreferences(): Int {
+    private fun loadDataFromPreferences(): Int {
         val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplication())
-        val serializedData = sharedPreferences.getInt("likeCount", 0)
-        return serializedData
+        return sharedPreferences.getInt("likeCount", 0)
     }
 }
