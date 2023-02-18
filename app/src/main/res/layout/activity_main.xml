@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="likeVM"
+            type="info.charith.labsheet2project.LikeViewModel" />
+
+        <variable
+            name="disLikeVM"
+            type="info.charith.labsheet2project.DisLikeViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="60dp"
+        tools:context=".MainActivity">
+
+        <TextView
+            android:id="@+id/textView"
+            style="@style/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Like Counter"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/likeCounter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="60dp"
+            android:text="LIKE"
+            app:layout_constraintEnd_toStartOf="@+id/dislikeCounter"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+        <TextView
+            android:id="@+id/dislikeCounter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="DISLIKE"
+            app:layout_constraintBottom_toBottomOf="@+id/likeCounter"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/likeCounter"
+            app:layout_constraintTop_toTopOf="@+id/likeCounter" />
+
+        <TextView
+            android:id="@+id/tvLikeCounter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="36dp"
+            android:text="@{String.valueOf(likeVM.likeCount)}"
+            app:layout_constraintStart_toStartOf="@+id/likeCounter"
+            app:layout_constraintTop_toBottomOf="@+id/likeCounter" />
+
+        <TextView
+            android:id="@+id/tvDisLikeCounter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{String.valueOf(disLikeVM.disLikeCount)}"
+            app:layout_constraintStart_toStartOf="@+id/dislikeCounter"
+            app:layout_constraintTop_toTopOf="@+id/tvLikeCounter" />
+
+        <Button
+            android:id="@+id/btnLike"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="136dp"
+            android:text="Like +"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvLikeCounter" />
+
+        <Button
+            android:id="@+id/btnDisLike"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="60dp"
+            android:text="DISLIKE -"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnLike" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
