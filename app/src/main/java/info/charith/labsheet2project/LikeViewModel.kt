@@ -1,32 +1,27 @@
 package info.charith.labsheet2project
 
+import android.app.Activity
 import android.app.Application
-import android.preference.PreferenceManager
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 
 
-class LikeViewModel(application: Application) : AndroidViewModel(application) {
+class LikeViewModel : ViewModel() {
     //    var likeCount: Int = 0
-    private val _likeCount = MutableLiveData(loadDataFromPreferences())
+    private val _likeCount =
+        MutableLiveData(0)
     val likeCount: LiveData<Int> get() = _likeCount
 
-    fun likeBtnClick() {
+    fun likeBtnClick(activity: Activity) {
 //        likeCount++
         _likeCount.value = _likeCount.value!! + 1
-        saveDataToPreferences()
     }
 
-    private fun saveDataToPreferences() {
-        val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplication())
-        val editor = sharedPreferences.edit()
-        editor.putInt("likeCount", _likeCount.value!!)
-        editor.apply()
-    }
 
-    private fun loadDataFromPreferences(): Int {
-        val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplication())
-        return sharedPreferences.getInt("likeCount", 0)
+    //This will skip setting default value to 0
+    fun startFromSavedCount(likes:Int){
+        _likeCount.value=likes
     }
 }

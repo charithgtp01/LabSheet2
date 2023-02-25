@@ -56,7 +56,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="36dp"
-            android:text="@{String.valueOf(likeVM.likeCount)}"
+            android:text="@{likeVM.likeCount.toString()}"
             app:layout_constraintStart_toStartOf="@+id/likeCounter"
             app:layout_constraintTop_toBottomOf="@+id/likeCounter" />
 
