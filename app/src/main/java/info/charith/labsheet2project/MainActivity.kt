@@ -18,8 +18,9 @@ class MainActivity : AppCompatActivity() {
         dataBinding.likeVM = likeViewModel
         dataBinding.lifecycleOwner = this
         dataBinding.btnLike.setOnClickListener {
-            likeViewModel.likeBtnClick()
+            likeViewModel.likeBtnClick(this)
 //            dataBinding.tvLikeCounter.text = likeViewModel.likeCount.toString()
+            SharedPref(this).saveDataToPreferences(likeViewModel.likeCount.value ?: 0)
         }
 
         /*Data Binding*/
@@ -42,5 +43,13 @@ class MainActivity : AppCompatActivity() {
 //        }
 //
 //        disLikeViewModel.disLikeCount.observe(this, disLikeObserver)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        val likeCount=SharedPref(this).loadDataFromPreferences()
+        likeViewModel.startFromSavedCount(likeCount)
+//                    dataBinding.tvLikeCounter.text = likeViewModel.likeCount.toString()
+
     }
 }
